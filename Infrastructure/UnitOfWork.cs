@@ -1,4 +1,5 @@
 ﻿using Application;
+using Application.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,15 @@ namespace Infrastructure
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _appDbContext;
+        private readonly ISportTypeRepository _sportTypeRepository;
 
-        public UnitOfWork(AppDbContext appDbContext)
+        public UnitOfWork(AppDbContext appDbContext, ISportTypeRepository sportTypeRepository)
         {
             _appDbContext = appDbContext;   
+            _sportTypeRepository = sportTypeRepository;
         }
+
+        public ISportTypeRepository SportTypeRepository => _sportTypeRepository;
 
         public async Task<int> SaveChangeAsync()
         {

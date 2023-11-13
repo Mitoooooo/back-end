@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Application.IRepositories;
+using Infrastructure.Repositories;
 
 namespace Infrastructure
 {
@@ -17,6 +19,8 @@ namespace Infrastructure
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<ICurrentTime, CurrentTime>();
+
+            services.AddScoped<ISportTypeRepository, SportTypeRepository>();
 
             services.AddDbContext<AppDbContext>(options =>
             {

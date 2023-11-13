@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.IRepositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Application
 {
     public interface IUnitOfWork
     {
+        public ISportTypeRepository SportTypeRepository { get; }
 
         public Task<int> SaveChangeAsync();
     }

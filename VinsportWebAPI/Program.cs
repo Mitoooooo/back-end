@@ -11,15 +11,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAPIServices();
 builder.Services.AddRazorPages();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession(opt => opt.IdleTimeout = TimeSpan.FromMinutes(10));
+
 builder.Services.AddAutoMapper(typeof(MapperConfiguration));
 var configuration = builder.Configuration.Get<AppConfiguration>();
+builder.Services.AddSingleton(configuration);
 builder.Services.AddControllers().AddOData(options =>
 {
     options.EnableQueryFeatures(maxTopValue: null);
@@ -27,6 +29,7 @@ builder.Services.AddControllers().AddOData(options =>
     options.AddRouteComponents(routePrefix: "odata", ODataModel.GetEdmModel());
 });
 builder.Services.AddInfrastructuresService(configuration!.DatabaseConnection);
+builder.Services.AddAPIServices();
 
 var app = builder.Build();
 

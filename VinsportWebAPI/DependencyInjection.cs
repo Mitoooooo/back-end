@@ -1,4 +1,5 @@
 ﻿using Application.IServices;
+using Application.Services;
 using VinsportWebAPI.WebServices;
 
 namespace VinsportWebAPI
@@ -9,7 +10,7 @@ namespace VinsportWebAPI
         {
             services.AddSingleton<IClaimsService, ClaimsService>();
 
-
+            services.AddScoped<ISportTypeService, SportTypeService>();
 
             return services;
         }

@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="FluentAPI\" />
-    <Folder Include="MapperConfiguration\" />
   </ItemGroup>
 
 </Project>
