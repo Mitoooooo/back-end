@@ -25,7 +25,7 @@ namespace VinsportWebAPI.Controllers
         }
 
         [HttpPost("SportTypes")]
-        public async Task<IActionResult> CreateAuthor([FromBody] CreateSportTypeDTO createSportTypeDTO)
+        public async Task<IActionResult> CreateSportType([FromBody] CreateSportTypeDTO createSportTypeDTO)
         {
             bool isCreated = await _sportTypeService.CreateSportTypeAsync(createSportTypeDTO);
             if (isCreated)
