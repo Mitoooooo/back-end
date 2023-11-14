@@ -1,6 +1,6 @@
 using Application;
 using Infrastructure;
-using AutoMapper;
+using Infrastructure.MapperConfiguration;
 using Microsoft.AspNetCore.OData;
 using VinsportWebAPI;
 

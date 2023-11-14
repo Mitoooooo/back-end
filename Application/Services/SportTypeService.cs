@@ -62,8 +62,8 @@ namespace Application.Services
             try
             {
                 var _sportTypeId = _mapper.Map<Guid>(sportTypeId);
-                var sportType = await _unitOfWork.SportTypeRepository.GetByIdAsync(_sportTypeId);
-                return sportType ?? throw new NullReferenceException($"Incorrect Id: The sport type with id: {sportTypeId} doesn't exist or has been deleted!");
+                SportType sportType = await _unitOfWork.SportTypeRepository.GetByIdAsync(_sportTypeId);
+                return sportType;
             }
             catch (AutoMapperMappingException)
             {
