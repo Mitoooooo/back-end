@@ -69,6 +69,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("TimeSlotId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");
 
@@ -78,6 +81,8 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("SportFieldId");
+
+                    b.HasIndex("TimeSlotId");
 
                     b.HasIndex("UserId");
 
@@ -174,51 +179,6 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("DeletionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("ModificationBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModificationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SportFieldName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SportFieldStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("SportFieldTypeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SportFieldTypeId");
-
-                    b.ToTable("SportFields");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SportFieldType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("DisplayIndex")
                         .HasColumnType("int");
 
@@ -234,11 +194,14 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("ModificationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<Guid>("SportFieldClusterId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("SportFieldName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SportFieldTypeStatus")
+                    b.Property<string>("SportFieldStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -251,56 +214,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("SportTypeId");
 
-                    b.ToTable("SportFieldType");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SportFieldTypeSchedule", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ClosingTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DayOfWeek")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("ModificationBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModificationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("OpeningTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("PricePerHour")
-                        .HasColumnType("float");
-
-                    b.Property<Guid>("SportFieldTypeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SportFieldTypeId");
-
-                    b.ToTable("SportFieldTypeSchedules");
+                    b.ToTable("SportFields");
                 });
 
             modelBuilder.Entity("Domain.Entities.SportType", b =>
@@ -344,6 +258,52 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SportTypes");
+                });
+
+            modelBuilder.Entity("Domain.Entities.TimeSlot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndSlotTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("ModificationBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("SportTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartSlotTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SportTypeId");
+
+                    b.ToTable("TimeSlots");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -428,11 +388,17 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.TimeSlot", "TimeSlot")
+                        .WithMany()
+                        .HasForeignKey("TimeSlotId");
+
                     b.HasOne("Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("SportField");
+
+                    b.Navigation("TimeSlot");
 
                     b.Navigation("User");
                 });
@@ -449,17 +415,6 @@ namespace Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Domain.Entities.SportField", b =>
-                {
-                    b.HasOne("Domain.Entities.SportFieldType", "SportFieldType")
-                        .WithMany()
-                        .HasForeignKey("SportFieldTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SportFieldType");
-                });
-
-            modelBuilder.Entity("Domain.Entities.SportFieldType", b =>
                 {
                     b.HasOne("Domain.Entities.FieldCluster", "FieldCluster")
                         .WithMany()
@@ -478,15 +433,15 @@ namespace Infrastructure.Migrations
                     b.Navigation("SportType");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SportFieldTypeSchedule", b =>
+            modelBuilder.Entity("Domain.Entities.TimeSlot", b =>
                 {
-                    b.HasOne("Domain.Entities.SportFieldType", "SportFieldType")
+                    b.HasOne("Domain.Entities.SportType", "SportType")
                         .WithMany()
-                        .HasForeignKey("SportFieldTypeId")
+                        .HasForeignKey("SportTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("SportFieldType");
+                    b.Navigation("SportType");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Application.IRepositories;
 using Infrastructure.Repositories;
+using Domain.Entities;
 
 namespace Infrastructure
 {
@@ -21,6 +22,10 @@ namespace Infrastructure
             services.AddSingleton<ICurrentTime, CurrentTime>();
 
             services.AddScoped<ISportTypeRepository, SportTypeRepository>();
+            services.AddScoped<ITimeSlotRepository, TimeSlotRepository>();
+            services.AddScoped<IFieldClusterRepository, FieldClusterRepository>();
+            services.AddScoped<ISportFieldRepository, SportFieldRepository>();
+            services.AddScoped<IBookingRepository, BookingRepository>();
 
             services.AddDbContext<AppDbContext>(options =>
             {

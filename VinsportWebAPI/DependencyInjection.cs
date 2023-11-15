@@ -11,6 +11,10 @@ namespace VinsportWebAPI
             services.AddSingleton<IClaimsService, ClaimsService>();
 
             services.AddScoped<ISportTypeService, SportTypeService>();
+            services.AddScoped<ITimeSlotService, TimeSlotService>();
+            services.AddScoped<IFieldClusterService, FieldClusterService>();
+            services.AddScoped<ISportFieldService, SportFieldService>();
+            services.AddScoped<IBookingService, BookingService>();
 
             return services;
         }

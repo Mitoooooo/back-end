@@ -17,8 +17,7 @@ namespace Infrastructure
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<FieldCluster> FieldClusters { get; set; }
         public DbSet<SportField> SportFields { get; set; }
-        public DbSet<SportFieldType> SportFieldType { get; set; }
-        public DbSet<SportFieldTypeSchedule> SportFieldTypeSchedules { get; set; }
+        public DbSet<TimeSlot> TimeSlots { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

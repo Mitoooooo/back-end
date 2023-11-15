@@ -48,7 +48,7 @@ namespace VinsportWebAPI.Controllers
 
         [EnableQuery]
         [HttpGet("SportTypes({id})")]
-        public async Task<IActionResult> GetAuthor([FromRoute] Guid id)
+        public async Task<IActionResult> GetSportType([FromRoute] Guid id)
         {
             SportType findSportType = await _sportTypeService.GetSportTypeByIdAsync(id);
             if (findSportType != null)

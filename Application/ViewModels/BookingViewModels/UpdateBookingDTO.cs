@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities
+namespace Application.ViewModels.BookingViewModels
 {
-    public class Booking : BaseEntity
+    public class UpdateBookingDTO
     {
+        public Guid BookingId { get; set; }
         public string BookerName { get; set; }
         public string? Note { get; set; }
         public double TotalPrice { get; set; }
@@ -15,13 +17,10 @@ namespace Domain.Entities
         public string BookerPhone { get; set; }
         public double QuotaSpent { get; set; }
 
-        public SportField SportField { get; set; }
         public Guid SportFieldId { get; set; }
 
-        public User User {  get; set; }
         public Guid? UserId { get; set; }
 
-        public TimeSlot TimeSlot { get; set; }
         public Guid? TimeSlotId { get; set; }
     }
 }
