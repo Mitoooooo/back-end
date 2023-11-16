@@ -15,6 +15,7 @@ namespace VinsportWebAPI
             services.AddScoped<IFieldClusterService, FieldClusterService>();
             services.AddScoped<ISportFieldService, SportFieldService>();
             services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IVnPayService, VnPayService>();
 
             return services;
         }
