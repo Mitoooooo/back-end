@@ -12,7 +12,7 @@ namespace Domain.Entities
         public string FieldName { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }
-        public DateTime? OpeningTime {  get; set; }
+        public string? OpeningTime { get; set; }
 
         public User? Admin { get; set; }
         [ForeignKey("Admin")]
