@@ -48,7 +48,7 @@ namespace VinsportWebAPI.Controllers
 
         [EnableQuery]
         [HttpGet("Bookings({id})")]
-        public async Task<IActionResult> GetBooking([FromRoute] Guid id)
+        public async Task<IActionResult> GetBooking([FromRoute] int id)
         {
             Booking findBooking = await _bookingService.GetBookingByIdAsync(id);
             if (findBooking != null)
@@ -59,7 +59,7 @@ namespace VinsportWebAPI.Controllers
         }
 
         [HttpDelete("Bookings({id})")]
-        public async Task<IActionResult> DeleteBooking([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteBooking([FromRoute] int id)
         {
             try
             {

@@ -13,6 +13,6 @@ namespace Application.ViewModels.TimeSlotViewModels
         public DateTime StartSlotTime { get; set; }
         public DateTime EndSlotTime { get; set; }
 
-        public Guid SportTypeId { get; set; }
+        public int SportTypeId { get; set; }
     }
 }

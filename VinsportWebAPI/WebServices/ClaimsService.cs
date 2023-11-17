@@ -10,9 +10,9 @@ namespace VinsportWebAPI.WebServices
         {
             // todo implementation to get the current userId
             var Id = httpContextAccessor.HttpContext?.User?.FindFirstValue("userId");
-            GetCurrentUserId = string.IsNullOrEmpty(Id) ? Guid.Empty : Guid.Parse(Id);
+            GetCurrentUserId = string.IsNullOrEmpty(Id) ? 0 : Int32.Parse(Id);
         }
 
-        public Guid GetCurrentUserId { get; }
+        public int GetCurrentUserId { get; }
     }
 }

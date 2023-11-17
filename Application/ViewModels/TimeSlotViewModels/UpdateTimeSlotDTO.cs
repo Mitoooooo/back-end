@@ -9,11 +9,11 @@ namespace Application.ViewModels.TimeSlotViewModels
 {
     public class UpdateTimeSlotDTO
     {
-        public Guid TimeSlotId { get; set; }
+        public int TimeSlotId { get; set; }
         public int DayOfWeek { get; set; }
         public DateTime StartSlotTime { get; set; }
         public DateTime EndSlotTime { get; set; }
 
-        public Guid SportTypeId { get; set; }
+        public int SportTypeId { get; set; }
     }
 }

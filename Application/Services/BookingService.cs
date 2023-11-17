@@ -24,7 +24,6 @@ namespace Application.Services
         public async Task<bool> CreateBookingAsync(CreateBookingDTO createBookingDTO)
         {
             Booking booking = _mapper.Map<Booking>(createBookingDTO);
-            booking.Id = Guid.NewGuid();
 
             await _unitOfWork.BookingRepository.AddAsync(booking);
             return await _unitOfWork.SaveChangeAsync() > 0;
@@ -38,12 +37,11 @@ namespace Application.Services
             return await _unitOfWork.SaveChangeAsync() > 0;
         }
 
-        public async Task<Booking> GetBookingByIdAsync(Guid bookingId)
+        public async Task<Booking> GetBookingByIdAsync(int bookingId)
         {
             try
             {
-                var _bookingId = _mapper.Map<Guid>(bookingId);
-                Booking booking = await _unitOfWork.BookingRepository.GetByIdAsync(_bookingId);
+                Booking booking = await _unitOfWork.BookingRepository.GetByIdAsync(bookingId);
                 return booking;
             }
             catch (AutoMapperMappingException)
@@ -52,7 +50,7 @@ namespace Application.Services
             }
         }
 
-        public async Task<bool> SoftRemoveBookingAsync(Guid bookingId)
+        public async Task<bool> SoftRemoveBookingAsync(int bookingId)
         {
             var booking = await GetBookingByIdAsync(bookingId);
 

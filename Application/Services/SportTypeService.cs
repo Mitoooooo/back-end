@@ -30,7 +30,6 @@ namespace Application.Services
         public async Task<bool> CreateSportTypeAsync(CreateSportTypeDTO createSportTypeDTO)
         {
             SportType sportType = _mapper.Map<SportType>(createSportTypeDTO);
-            sportType.Id = Guid.NewGuid();             
                      
             await _unitOfWork.SportTypeRepository.AddAsync(sportType);
             return await _unitOfWork.SaveChangeAsync() > 0;
@@ -48,7 +47,7 @@ namespace Application.Services
         {
             try
             {
-                var _sportTypeId = _mapper.Map<Guid>(sportTypeId);
+                var _sportTypeId = _mapper.Map<int>(sportTypeId);
                 var sportType = await _unitOfWork.SportTypeRepository.GetByIdAsync(_sportTypeId);
                 return sportType ?? throw new NullReferenceException($"Incorrect Id: The sport type with id: {sportTypeId} doesn't exist or has been deleted!");
             }
@@ -57,12 +56,11 @@ namespace Application.Services
                 throw new AutoMapperMappingException("Incorrect Id!");
             }
         }*/
-        public async Task<SportType> GetSportTypeByIdAsync(Guid sportTypeId)
+        public async Task<SportType> GetSportTypeByIdAsync(int sportTypeId)
         {
             try
             {
-                var _sportTypeId = _mapper.Map<Guid>(sportTypeId);
-                SportType sportType = await _unitOfWork.SportTypeRepository.GetByIdAsync(_sportTypeId);
+                SportType sportType = await _unitOfWork.SportTypeRepository.GetByIdAsync(sportTypeId);
                 return sportType;
             }
             catch (AutoMapperMappingException)
@@ -71,12 +69,12 @@ namespace Application.Services
             }
         }
 
-        /* public async Task<SportType> GetSportTypeById(Guid sportTypeId)
+        /* public async Task<SportType> GetSportTypeById(int sportTypeId)
          {
              return await _unitOfWork.SportTypeRepository.GetSportTypeById(sportTypeId);
          }*/
 
-        public async Task<bool> SoftRemoveSportTypeAsync(Guid sportTypeId)
+        public async Task<bool> SoftRemoveSportTypeAsync(int sportTypeId)
         {
             var sportType = await GetSportTypeByIdAsync(sportTypeId);
 

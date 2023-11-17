@@ -14,6 +14,7 @@ namespace Application
         public IFieldClusterRepository FieldClusterRepository { get; }
         public ISportFieldRepository SportFieldRepository { get; }
         public IBookingRepository BookingRepository { get; }
+        public IUserRepository UserRepository { get; }
 
         public Task<int> SaveChangeAsync();
     }

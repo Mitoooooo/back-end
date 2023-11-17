@@ -10,6 +10,6 @@ namespace Application.IRepositories
     public interface ISportTypeRepository : IGenericRepository<SportType>
     {
         public Task<List<SportType>> GetAllSportTypes();
-        public Task<SportType> GetSportTypeById(Guid sportTypeId);
+        public Task<SportType> GetSportTypeById(int sportTypeId);
     }
 }

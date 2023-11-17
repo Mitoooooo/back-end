@@ -25,7 +25,6 @@ namespace Application.Services
         public async Task<bool> CreateTimeSlotAsync(CreateTimeSlotDTO createTimeSlotDTO)
         {
             TimeSlot timeSlot = _mapper.Map<TimeSlot>(createTimeSlotDTO);
-            timeSlot.Id = Guid.NewGuid();
 
             await _unitOfWork.TimeSlotRepository.AddAsync(timeSlot);
             return await _unitOfWork.SaveChangeAsync() > 0;
@@ -39,12 +38,11 @@ namespace Application.Services
             return await _unitOfWork.SaveChangeAsync() > 0;
         }
 
-        public async Task<TimeSlot> GetTimeSlotByIdAsync(Guid timeSlotId)
+        public async Task<TimeSlot> GetTimeSlotByIdAsync(int timeSlotId)
         {
             try
             {
-                var _timeSlotId = _mapper.Map<Guid>(timeSlotId);
-                TimeSlot timeSlot = await _unitOfWork.TimeSlotRepository.GetByIdAsync(_timeSlotId);
+                TimeSlot timeSlot = await _unitOfWork.TimeSlotRepository.GetByIdAsync(timeSlotId);
                 return timeSlot;
             }
             catch (AutoMapperMappingException)
@@ -53,7 +51,7 @@ namespace Application.Services
             }
         }
 
-        public async Task<bool> SoftRemoveTimeSlotAsync(Guid timeSlotId)
+        public async Task<bool> SoftRemoveTimeSlotAsync(int timeSlotId)
         {
             var timeSlot = await GetTimeSlotByIdAsync(timeSlotId);
 

@@ -25,7 +25,6 @@ namespace Application.Services
         public async Task<bool> CreateSportFieldAsync(CreateSportFieldDTO createSportFieldDTO)
         {
             SportField sportField = _mapper.Map<SportField>(createSportFieldDTO);
-            sportField.Id = Guid.NewGuid();
 
             await _unitOfWork.SportFieldRepository.AddAsync(sportField);
             return await _unitOfWork.SaveChangeAsync() > 0;
@@ -39,12 +38,11 @@ namespace Application.Services
             return await _unitOfWork.SaveChangeAsync() > 0;
         }
 
-        public async Task<SportField> GetSportFieldByIdAsync(Guid sportFieldId)
+        public async Task<SportField> GetSportFieldByIdAsync(int sportFieldId)
         {
             try
             {
-                var _sportFieldId = _mapper.Map<Guid>(sportFieldId);
-                SportField sportField = await _unitOfWork.SportFieldRepository.GetByIdAsync(_sportFieldId);
+                SportField sportField = await _unitOfWork.SportFieldRepository.GetByIdAsync(sportFieldId);
                 return sportField;
             }
             catch (AutoMapperMappingException)
@@ -53,7 +51,7 @@ namespace Application.Services
             }
         }
 
-        public async Task<bool> SoftRemoveSportFieldAsync(Guid sportFieldId)
+        public async Task<bool> SoftRemoveSportFieldAsync(int sportFieldId)
         {
             var sportField = await GetSportFieldByIdAsync(sportFieldId);
 

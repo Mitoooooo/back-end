@@ -58,7 +58,7 @@ namespace Infrastructure.Repositories
            .Where(x => x.IsDeleted == false)
            .ToListAsync();
         }
-        public async Task<TEntity?> GetByIdAsync(Guid id, params Expression<Func<TEntity, object>>[] includes)
+        public async Task<TEntity?> GetByIdAsync(int id, params Expression<Func<TEntity, object>>[] includes)
         {
             //return result;
             return await includes
@@ -67,7 +67,7 @@ namespace Infrastructure.Repositories
                .AsNoTracking()
                .FirstOrDefaultAsync(x => x.Id.Equals(id) && x.IsDeleted == false);
         }
-        public Task<TEntity?> GetByIdAsync(Guid id)
+        public Task<TEntity?> GetByIdAsync(int id)
         {
             return this.GetByIdAsync(id, Array.Empty<Expression<Func<TEntity, object>>>());
         }

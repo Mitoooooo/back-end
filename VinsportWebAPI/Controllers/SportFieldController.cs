@@ -48,7 +48,7 @@ namespace VinsportWebAPI.Controllers
 
         [EnableQuery]
         [HttpGet("SportFields({id})")]
-        public async Task<IActionResult> GetSportField([FromRoute] Guid id)
+        public async Task<IActionResult> GetSportField([FromRoute] int id)
         {
             SportField findSportField = await _sportFieldService.GetSportFieldByIdAsync(id);
             if (findSportField != null)
@@ -59,7 +59,7 @@ namespace VinsportWebAPI.Controllers
         }
 
         [HttpDelete("SportFields({id})")]
-        public async Task<IActionResult> DeleteSportField([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteSportField([FromRoute] int id)
         {
             try
             {

@@ -16,9 +16,11 @@ namespace Infrastructure
         private readonly IFieldClusterRepository _fieldClusterRepository;
         private readonly ISportFieldRepository _sportFieldRepository;
         private readonly IBookingRepository _bookingRepository;
+        private readonly IUserRepository _userRepository;
 
         public UnitOfWork(AppDbContext appDbContext, ISportTypeRepository sportTypeRepository, ITimeSlotRepository timeSlotRepository
-            , IFieldClusterRepository fieldClusterRepository, ISportFieldRepository sportFieldRepository, IBookingRepository bookingRepository)
+            , IFieldClusterRepository fieldClusterRepository, ISportFieldRepository sportFieldRepository, IBookingRepository bookingRepository,
+            IUserRepository userRepository)
         {
             _appDbContext = appDbContext;   
             _sportTypeRepository = sportTypeRepository;
@@ -26,6 +28,7 @@ namespace Infrastructure
             _fieldClusterRepository = fieldClusterRepository;
             _sportFieldRepository = sportFieldRepository;
             _bookingRepository = bookingRepository;
+            _userRepository = userRepository;
         }
 
         public ISportTypeRepository SportTypeRepository => _sportTypeRepository;
@@ -33,7 +36,7 @@ namespace Infrastructure
         public IFieldClusterRepository FieldClusterRepository => _fieldClusterRepository;
         public ISportFieldRepository SportFieldRepository => _sportFieldRepository;
         public IBookingRepository BookingRepository => _bookingRepository;
-
+        public IUserRepository UserRepository => _userRepository;
         public async Task<int> SaveChangeAsync()
         {
             return await _appDbContext.SaveChangesAsync();

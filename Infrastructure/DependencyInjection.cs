@@ -26,6 +26,7 @@ namespace Infrastructure
             services.AddScoped<IFieldClusterRepository, FieldClusterRepository>();
             services.AddScoped<ISportFieldRepository, SportFieldRepository>();
             services.AddScoped<IBookingRepository, BookingRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddDbContext<AppDbContext>(options =>
             {

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class adddb : Migration
+    public partial class initdb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,17 +28,18 @@ namespace Infrastructure.Migrations
                 name: "SportTypes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     SportName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CostRate = table.Column<double>(type: "float", nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CostRate = table.Column<double>(type: "float", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ModificationBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedBy = table.Column<int>(type: "int", nullable: true),
+                    ModificationBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,7 +50,8 @@ namespace Infrastructure.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -57,18 +59,18 @@ namespace Infrastructure.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExpireTokenTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: true),
                     GoogleUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GoogleEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsGoogleUser = table.Column<bool>(type: "bit", nullable: true),
-                    BookingQuota = table.Column<double>(type: "float", nullable: false),
+                    BookingQuota = table.Column<double>(type: "float", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ModificationBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedBy = table.Column<int>(type: "int", nullable: true),
+                    ModificationBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,26 +79,26 @@ namespace Infrastructure.Migrations
                         name: "FK_Users_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
-                        principalColumn: "RoleId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RoleId");
                 });
 
             migrationBuilder.CreateTable(
                 name: "TimeSlots",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DayOfWeek = table.Column<int>(type: "int", nullable: false),
                     StartSlotTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndSlotTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SportTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SportTypeId = table.Column<int>(type: "int", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ModificationBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedBy = table.Column<int>(type: "int", nullable: true),
+                    ModificationBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,58 +107,56 @@ namespace Infrastructure.Migrations
                         name: "FK_TimeSlots_SportTypes_SportTypeId",
                         column: x => x.SportTypeId,
                         principalTable: "SportTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "FieldClusters",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FieldName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OpeningTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AdminId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OpeningTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AdminId = table.Column<int>(type: "int", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ModificationBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedBy = table.Column<int>(type: "int", nullable: true),
+                    ModificationBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FieldClusters", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FieldClusters_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_FieldClusters_Users_AdminId",
+                        column: x => x.AdminId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "SportFields",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     SportFieldName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SportFieldStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DisplayIndex = table.Column<int>(type: "int", nullable: false),
-                    FieldClusterId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SportFieldClusterId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SportTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SportFieldStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DisplayIndex = table.Column<int>(type: "int", nullable: true),
+                    FieldClusterId = table.Column<int>(type: "int", nullable: false),
+                    SportTypeId = table.Column<int>(type: "int", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ModificationBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedBy = table.Column<int>(type: "int", nullable: true),
+                    ModificationBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -179,23 +179,24 @@ namespace Infrastructure.Migrations
                 name: "Bookings",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BookerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TotalPrice = table.Column<double>(type: "float", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     BookerPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     QuotaSpent = table.Column<double>(type: "float", nullable: false),
-                    SportFieldId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    TimeSlotId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    SportFieldId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    TimeSlotId = table.Column<int>(type: "int", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModificationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: true),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ModificationBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedBy = table.Column<int>(type: "int", nullable: true),
+                    ModificationBy = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -234,9 +235,9 @@ namespace Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FieldClusters_UserId",
+                name: "IX_FieldClusters_AdminId",
                 table: "FieldClusters",
-                column: "UserId");
+                column: "AdminId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SportFields_FieldClusterId",

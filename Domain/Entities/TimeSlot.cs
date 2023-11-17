@@ -12,7 +12,7 @@ namespace Domain.Entities
         public DateTime StartSlotTime {  get; set; }
         public DateTime EndSlotTime { get; set; }
 
-        public SportType SportType { get; set; }
-        public Guid SportTypeId { get; set; }
+        public SportType? SportType { get; set; }
+        public int? SportTypeId { get; set; }
     }
 }

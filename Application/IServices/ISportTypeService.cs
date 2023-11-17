@@ -13,8 +13,8 @@ namespace Application.IServices
     {
         public Task<bool> CreateSportTypeAsync(CreateSportTypeDTO createSportTypeDTO);
         public Task<bool> UpdateSportTypeAsync(UpdateSportTypeDTO updateSportTypeDTO);
-        public Task<SportType> GetSportTypeByIdAsync(Guid sportTypeId);
-        public Task<bool> SoftRemoveSportTypeAsync(Guid sportTypeId);
+        public Task<SportType> GetSportTypeByIdAsync(int sportTypeId);
+        public Task<bool> SoftRemoveSportTypeAsync(int sportTypeId);
         public Task<List<SportType>> GetAllSportTypes();
     }
 }

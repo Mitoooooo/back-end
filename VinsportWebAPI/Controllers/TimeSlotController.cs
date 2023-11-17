@@ -49,7 +49,7 @@ namespace VinsportWebAPI.Controllers
 
         [EnableQuery]
         [HttpGet("TimeSlots({id})")]
-        public async Task<IActionResult> GetTimeSlot([FromRoute] Guid id)
+        public async Task<IActionResult> GetTimeSlot([FromRoute] int id)
         {
             TimeSlot findTimeSlot = await _timeSlotService.GetTimeSlotByIdAsync(id);
             if (findTimeSlot != null)
@@ -60,7 +60,7 @@ namespace VinsportWebAPI.Controllers
         }
 
         [HttpDelete("TimeSlots({id})")]
-        public async Task<IActionResult> DeleteTimeSlot([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteTimeSlot([FromRoute] int id)
         {
             try
             {

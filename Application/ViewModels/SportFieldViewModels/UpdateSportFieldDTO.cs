@@ -9,13 +9,13 @@ namespace Application.ViewModels.SportFieldViewModels
 {
     public class UpdateSportFieldDTO
     {
-        public Guid SportFieldId { get; set; }
+        public int SportFieldId { get; set; }
         public string SportFieldName { get; set; }
         public string SportFieldStatus { get; set; }
         public int DisplayIndex { get; set; }
 
-        public Guid SportFieldClusterId { get; set; }
+        public int SportFieldClusterId { get; set; }
 
-        public Guid SportTypeId { get; set; }
+        public int SportTypeId { get; set; }
     }
 }

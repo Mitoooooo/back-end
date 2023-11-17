@@ -12,8 +12,8 @@ namespace Application.IServices
     {
         public Task<bool> CreateSportFieldAsync(CreateSportFieldDTO createSportFieldDTO);
         public Task<bool> UpdateSportFieldAsync(UpdateSportFieldDTO updateSportFieldDTO);
-        public Task<SportField> GetSportFieldByIdAsync(Guid sportFieldId);
-        public Task<bool> SoftRemoveSportFieldAsync(Guid sportFieldId);
+        public Task<SportField> GetSportFieldByIdAsync(int sportFieldId);
+        public Task<bool> SoftRemoveSportFieldAsync(int sportFieldId);
         public Task<List<SportField>> GetAllSportFields();
     }
 }

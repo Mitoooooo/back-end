@@ -13,15 +13,15 @@ namespace Domain.Entities
         public double TotalPrice { get; set; }
         public int Status { get; set; }
         public string BookerPhone { get; set; }
-        public double QuotaSpent { get; set; }
+        public double? QuotaSpent { get; set; }
 
-        public SportField SportField { get; set; }
-        public Guid SportFieldId { get; set; }
+        public SportField? SportField { get; set; }
+        public int SportFieldId { get; set; }
 
-        public User User {  get; set; }
-        public Guid? UserId { get; set; }
+        public User? User {  get; set; }
+        public int? UserId { get; set; }
 
-        public TimeSlot TimeSlot { get; set; }
-        public Guid? TimeSlotId { get; set; }
+        public TimeSlot? TimeSlot { get; set; }
+        public int? TimeSlotId { get; set; }
     }
 }

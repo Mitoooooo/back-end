@@ -25,7 +25,6 @@ namespace Application.Services
         public async Task<bool> CreateFieldClusterAsync(CreateFieldClusterDTO createFieldClusterDTO)
         {
             FieldCluster fieldCluster = _mapper.Map<FieldCluster>(createFieldClusterDTO);
-            fieldCluster.Id = Guid.NewGuid();
 
             await _unitOfWork.FieldClusterRepository.AddAsync(fieldCluster);
             return await _unitOfWork.SaveChangeAsync() > 0;
@@ -39,12 +38,11 @@ namespace Application.Services
             return await _unitOfWork.SaveChangeAsync() > 0;
         }
 
-        public async Task<FieldCluster> GetFieldClusterByIdAsync(Guid fieldClusterId)
+        public async Task<FieldCluster> GetFieldClusterByIdAsync(int fieldClusterId)
         {
             try
             {
-                var _fieldClusterId = _mapper.Map<Guid>(fieldClusterId);
-                FieldCluster fieldCluster = await _unitOfWork.FieldClusterRepository.GetByIdAsync(_fieldClusterId);
+                FieldCluster fieldCluster = await _unitOfWork.FieldClusterRepository.GetByIdAsync(fieldClusterId);
                 return fieldCluster;
             }
             catch (AutoMapperMappingException)
@@ -53,7 +51,7 @@ namespace Application.Services
             }
         }
 
-        public async Task<bool> SoftRemoveFieldClusterAsync(Guid fieldClusterId)
+        public async Task<bool> SoftRemoveFieldClusterAsync(int fieldClusterId)
         {
             var fieldCluster = await GetFieldClusterByIdAsync(fieldClusterId);
 

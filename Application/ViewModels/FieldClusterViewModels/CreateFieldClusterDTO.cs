@@ -14,6 +14,6 @@ namespace Application.ViewModels.FieldClusterViewModels
         public string Description { get; set; }
         public DateTime OpeningTime { get; set; }
 
-        public Guid AdminId { get; set; }
+        public int AdminId { get; set; }
     }
 }

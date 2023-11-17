@@ -17,12 +17,12 @@ namespace Domain.Entities
         public string? RefreshToken { get; set; }
         public DateTime? ExpireTokenTime { get; set; }
 
-        public Role Role {  get; set; }
-        public int RoleId { get; set; }
+        public Role? Role {  get; set; }
+        public int? RoleId { get; set; }
 
         public string? GoogleUserId { get; set; }
         public string? GoogleEmail { get; set; }
         public bool? IsGoogleUser { get; set; }
-        public double BookingQuota { get; set; }
+        public double? BookingQuota { get; set; }
     }
 }

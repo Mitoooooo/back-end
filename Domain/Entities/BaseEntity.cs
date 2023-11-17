@@ -9,13 +9,13 @@ namespace Domain.Entities
 {
     public class BaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public DateTime? CreationDate { get; set; }
         public DateTime? DeletionDate { get; set; }
         public DateTime? ModificationDate { get; set; }
         public bool? IsDeleted { get; set; } = false;
-        public Guid? CreatedBy { get; set; }
-        public Guid? DeletedBy { get; set; }
-        public Guid? ModificationBy { get; set; }
+        public int? CreatedBy { get; set; }
+        public int? DeletedBy { get; set; }
+        public int? ModificationBy { get; set; }
     }
 }

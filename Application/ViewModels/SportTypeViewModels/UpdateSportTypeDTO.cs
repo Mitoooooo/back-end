@@ -8,7 +8,7 @@ namespace Application.ViewModels.SportTypeViewModels
 {
     public class UpdateSportTypeDTO
     {
-        public Guid SportTypeId { get; set; }
+        public int SportTypeId { get; set; }
         public string SportName { get; set; }
         public string Icon { get; set; }
         public double CostRate { get; set; }

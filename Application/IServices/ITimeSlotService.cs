@@ -12,8 +12,8 @@ namespace Application.IServices
     {
         public Task<bool> CreateTimeSlotAsync(CreateTimeSlotDTO createTimeSlotDTO);
         public Task<bool> UpdateTimeSlotAsync(UpdateTimeSlotDTO updateTimeSlotDTO);
-        public Task<TimeSlot> GetTimeSlotByIdAsync(Guid timeSlotId);
-        public Task<bool> SoftRemoveTimeSlotAsync(Guid timeSlotId);
+        public Task<TimeSlot> GetTimeSlotByIdAsync(int timeSlotId);
+        public Task<bool> SoftRemoveTimeSlotAsync(int timeSlotId);
         public Task<List<TimeSlot>> GetAllTimeSlots();
     }
 }

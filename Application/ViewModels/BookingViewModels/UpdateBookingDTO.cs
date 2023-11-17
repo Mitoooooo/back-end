@@ -9,7 +9,7 @@ namespace Application.ViewModels.BookingViewModels
 {
     public class UpdateBookingDTO
     {
-        public Guid BookingId { get; set; }
+        public int BookingId { get; set; }
         public string BookerName { get; set; }
         public string? Note { get; set; }
         public double TotalPrice { get; set; }
@@ -17,10 +17,10 @@ namespace Application.ViewModels.BookingViewModels
         public string BookerPhone { get; set; }
         public double QuotaSpent { get; set; }
 
-        public Guid SportFieldId { get; set; }
+        public int SportFieldId { get; set; }
 
-        public Guid? UserId { get; set; }
+        public int? UserId { get; set; }
 
-        public Guid? TimeSlotId { get; set; }
+        public int? TimeSlotId { get; set; }
     }
 }

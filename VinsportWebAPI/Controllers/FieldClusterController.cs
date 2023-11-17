@@ -49,7 +49,7 @@ namespace VinsportWebAPI.Controllers
 
         [EnableQuery]
         [HttpGet("FieldClusters({id})")]
-        public async Task<IActionResult> GetFieldCluster([FromRoute] Guid id)
+        public async Task<IActionResult> GetFieldCluster([FromRoute] int id)
         {
             FieldCluster findFieldCluster = await _fieldClusterService.GetFieldClusterByIdAsync(id);
             if (findFieldCluster != null)
@@ -60,7 +60,7 @@ namespace VinsportWebAPI.Controllers
         }
 
         [HttpDelete("FieldClusters({id})")]
-        public async Task<IActionResult> DeleteFieldCluster([FromRoute] Guid id)
+        public async Task<IActionResult> DeleteFieldCluster([FromRoute] int id)
         {
             try
             {

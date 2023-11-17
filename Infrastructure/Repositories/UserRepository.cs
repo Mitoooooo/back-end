@@ -10,27 +10,19 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class SportTypeRepository : GenericRepository<SportType>,ISportTypeRepository
+    public class UserRepository : GenericRepository<User>, IUserRepository
     {
         private readonly AppDbContext _appDbContext;
         private readonly ICurrentTime _currentTime;
         private IClaimsService _claimsService;
 
-        public SportTypeRepository(AppDbContext appDbContext, ICurrentTime timeService, IClaimsService claimsService) : base(appDbContext, timeService, claimsService)
+        public UserRepository(AppDbContext appDbContext, ICurrentTime timeService, IClaimsService claimsService) : base(appDbContext, timeService, claimsService)
         {
             _appDbContext = appDbContext;
             _currentTime = timeService;
             _claimsService = claimsService;
         }
 
-        public async Task<List<SportType>> GetAllSportTypes()
-        {
-            return await _appDbContext.SportTypes.ToListAsync();
-        }
-
-        public async Task<SportType> GetSportTypeById(int sportTypeId)
-        {
-            return await _appDbContext.SportTypes.FindAsync(sportTypeId);
-        }
+    
     }
 }

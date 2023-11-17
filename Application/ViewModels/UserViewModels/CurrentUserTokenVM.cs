@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.IServices
+namespace Application.ViewModels.UserViewModels
 {
-    public interface IClaimsService
+    public class CurrentUserTokenVM
     {
-        public int GetCurrentUserId { get; }
+        public string UserToken { get; set; }
     }
 }

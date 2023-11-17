@@ -13,8 +13,8 @@ namespace Application.ViewModels.SportFieldViewModels
         public string SportFieldStatus { get; set; }
         public int DisplayIndex { get; set; }
 
-        public Guid SportFieldClusterId { get; set; }
+        public int SportFieldClusterId { get; set; }
 
-        public Guid SportTypeId { get; set; }
+        public int SportTypeId { get; set; }
     }
 }

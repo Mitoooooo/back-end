@@ -12,8 +12,8 @@ namespace Application.IServices
     {
         public Task<bool> CreateFieldClusterAsync(CreateFieldClusterDTO createFieldClusterDTO);
         public Task<bool> UpdateFieldClusterAsync(UpdateFieldClusterDTO updateFieldClusterDTO);
-        public Task<FieldCluster> GetFieldClusterByIdAsync(Guid fieldClusterId);
-        public Task<bool> SoftRemoveFieldClusterAsync(Guid fieldClusterId);
+        public Task<FieldCluster> GetFieldClusterByIdAsync(int fieldClusterId);
+        public Task<bool> SoftRemoveFieldClusterAsync(int fieldClusterId);
         public Task<List<FieldCluster>> GetAllFieldClusters();
     }
 }

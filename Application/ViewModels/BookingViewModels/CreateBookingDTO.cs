@@ -16,10 +16,10 @@ namespace Application.ViewModels.BookingViewModels
         public string BookerPhone { get; set; }
         public double QuotaSpent { get; set; }
 
-        public Guid SportFieldId { get; set; }
+        public int SportFieldId { get; set; }
 
-        public Guid? UserId { get; set; }
+        public int? UserId { get; set; }
 
-        public Guid? TimeSlotId { get; set; }
+        public int? TimeSlotId { get; set; }
     }
 }

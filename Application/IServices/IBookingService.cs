@@ -12,8 +12,8 @@ namespace Application.IServices
     {
         public Task<bool> CreateBookingAsync(CreateBookingDTO createBookingDTO);
         public Task<bool> UpdateBookingAsync(UpdateBookingDTO updateBookingDTO);
-        public Task<Booking> GetBookingByIdAsync(Guid bookingId);
-        public Task<bool> SoftRemoveBookingAsync(Guid bookingId);
+        public Task<Booking> GetBookingByIdAsync(int bookingId);
+        public Task<bool> SoftRemoveBookingAsync(int bookingId);
         public Task<List<Booking>> GetAllBookings();
     }
 }
