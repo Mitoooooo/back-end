@@ -5,14 +5,15 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing.Controllers;
 using System.Security.Claims;
 
 namespace VinsportWebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("odata/[controller]")]
 
-    public class UserController : ControllerBase
+    public class UserController : ODataController
     {
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
