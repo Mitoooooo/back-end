@@ -34,7 +34,19 @@ namespace VinsportWebAPI
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
                 };
             });
-
+            // Add CORS Policy
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "_myAllowSpecificOrigins",
+                                  policy =>
+                                  {
+                                      policy.WithOrigins(
+                                          "http://localhost:3005",
+                                          "http://localhost:3000")
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod();
+                                  });
+            });
             return services;
         }
     }
