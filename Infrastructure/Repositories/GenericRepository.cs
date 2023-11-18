@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories
             return await includes
             .Aggregate(_dbSet.AsQueryable(),
                 (entity, property) => entity.Include(property))
-            .Where(expression).Where(x => x.IsDeleted == false).ToListAsync();
+            .Where(expression).Where(x => x.IsDeleted != true).ToListAsync();
 
         }
 
@@ -55,7 +55,7 @@ namespace Infrastructure.Repositories
             return await includes
            .Aggregate(_dbSet.AsQueryable(),
                (entity, property) => entity.Include(property))
-           .Where(x => x.IsDeleted == false)
+           .Where(x => x.IsDeleted != true)
            .ToListAsync();
         }
         public async Task<TEntity?> GetByIdAsync(int id, params Expression<Func<TEntity, object>>[] includes)
@@ -65,7 +65,7 @@ namespace Infrastructure.Repositories
                .Aggregate(_dbSet.AsQueryable(),
                    (entity, property) => entity.Include(property))
                .AsNoTracking()
-               .FirstOrDefaultAsync(x => x.Id.Equals(id) && x.IsDeleted == false);
+               .FirstOrDefaultAsync(x => x.Id.Equals(id) && x.IsDeleted != false);
         }
         public Task<TEntity?> GetByIdAsync(int id)
         {

@@ -11,7 +11,8 @@ namespace Domain.Entities
         public string BookerName { get; set; }
         public string? Note { get; set; }
         public double TotalPrice { get; set; }
-        public int Status { get; set; }
+        public DateTime? BookingDate { get; set; }
+        public int? Status { get; set; }
         public string BookerPhone { get; set; }
         public double? QuotaSpent { get; set; }
 
