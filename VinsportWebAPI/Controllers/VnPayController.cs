@@ -14,7 +14,7 @@ namespace VinsportWebAPI.Controllers
             _vnPayService = vnPayService;
         }
 
-        [HttpPost]
+        [HttpPost("VnPay")]
         public IActionResult CreatePaymentUrl(PaymentInformationModel model)
         {
             var url = _vnPayService.CreatePaymentUrl(model, HttpContext);

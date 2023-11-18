@@ -4,6 +4,7 @@ using Infrastructure.MapperConfiguration;
 using Microsoft.AspNetCore.OData;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 using VinsportWebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,7 +54,7 @@ builder.Services.AddControllers().AddOData(options =>
     options.EnableQueryFeatures(maxTopValue: null);
     // Disable attribute routing
     options.AddRouteComponents(routePrefix: "odata", ODataModel.GetEdmModel());
-});
+}).AddJsonOptions(c => c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddInfrastructuresService(builder.Configuration.GetConnectionString("VinsportDB"));
 builder.Services.AddAPIServices(builder);
 
